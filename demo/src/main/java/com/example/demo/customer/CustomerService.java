@@ -19,7 +19,7 @@ public class CustomerService {
     }
 
     Customer getCustomer(Long id) {
-        getCustomers()
+        return getCustomers()
                 .stream()
                 .filter(customer -> customer.getId() == id)
                 .findFirst()
