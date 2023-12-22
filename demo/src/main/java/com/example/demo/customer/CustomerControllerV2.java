@@ -1,5 +1,6 @@
 package com.example.demo.customer;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -27,7 +28,7 @@ public class CustomerControllerV2 {
     }
 
     @PostMapping
-    public void createNewCustomer(@RequestBody Customer customer) {
+    public void createNewCustomer(@Valid @RequestBody Customer customer) {
         System.out.println("POST Request...");
         System.out.println(customer);
     }
