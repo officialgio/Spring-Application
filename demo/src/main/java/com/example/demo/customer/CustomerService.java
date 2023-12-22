@@ -1,8 +1,6 @@
 package com.example.demo.customer;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,8 +13,16 @@ public class CustomerService {
     public CustomerService(CustomerRepo customerRepo) {
         this.customerRepo = customerRepo;
     }
-    List<Customer> getCustomer() {
+    List<Customer> getCustomers() {
         // Now you can use customerRepo to get customers
         return customerRepo.getCustomers();
+    }
+
+    Customer getCustomer(Long id) {
+        getCustomers()
+                .stream()
+                .filter(customer -> customer.getId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException("Customer not found."));
     }
 }
